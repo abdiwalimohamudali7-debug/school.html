@@ -1,0 +1,1190 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>School Name | Official Website</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1D4ED8",
+            secondary: "#0F172A",
+            accent: "#F59E0B"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- ================= HEADER ================= -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="flex items-center justify-between h-20">
+
+        <!-- LOGO -->
+        <a href="#" class="flex items-center gap-3">
+
+          <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
+            <i data-lucide="graduation-cap" class="text-white w-7 h-7"></i>
+          </div>
+
+          <div>
+            <h1 class="font-bold text-xl text-slate-900">
+              SCHOOL NAME
+            </h1>
+
+            <p class="text-xs text-slate-500">
+              Excellence • Knowledge • Future
+            </p>
+          </div>
+
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
+
+          <a href="#home" class="hover:text-primary transition">
+            Home
+          </a>
+
+          <a href="#about" class="hover:text-primary transition">
+            About
+          </a>
+
+          <a href="#programs" class="hover:text-primary transition">
+            Programs
+          </a>
+
+          <a href="#teachers" class="hover:text-primary transition">
+            Teachers
+          </a>
+
+          <a href="#events" class="hover:text-primary transition">
+            Events
+          </a>
+
+          <a href="#contact" class="hover:text-primary transition">
+            Contact
+          </a>
+
+        </nav>
+
+        <!-- BUTTON -->
+        <div class="hidden lg:block">
+
+          <a
+            href="#admission"
+            class="bg-primary text-white px-5 py-3 rounded-xl hover:bg-blue-700 transition font-semibold"
+          >
+            Apply Now
+          </a>
+
+        </div>
+
+        <!-- MOBILE BUTTON -->
+        <button
+          id="menuBtn"
+          class="lg:hidden"
+        >
+          <i data-lucide="menu"></i>
+        </button>
+
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div id="mobileMenu" class="hidden lg:hidden pb-6">
+
+        <div class="flex flex-col gap-4 text-sm font-medium">
+
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#teachers">Teachers</a>
+          <a href="#events">Events</a>
+          <a href="#contact">Contact</a>
+
+          <a
+            href="#admission"
+            class="bg-primary text-white px-4 py-3 rounded-xl text-center"
+          >
+            Apply Now
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ================= HERO ================= -->
+  <section id="home" class="relative overflow-hidden">
+
+    <div class="max-w-7xl mx-auto px-6 py-24 lg:py-32">
+
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+        <!-- TEXT -->
+
+        <div>
+
+          <span
+            class="inline-flex items-center gap-2 bg-blue-100 text-primary px-4 py-2 rounded-full text-sm font-semibold"
+          >
+            <i data-lucide="sparkles" class="w-4"></i>
+            Welcome to our school
+          </span>
+
+          <h2
+            class="mt-6 text-5xl lg:text-7xl font-black tracking-tight text-slate-900 leading-tight"
+          >
+iidhis we            <span class="text-primary">
+              Bright Futures
+            </span>
+            Together.
+          </h2>
+
+          <p class="mt-6 text-lg text-slate-600 leading-8 max-w-xl">
+            Waxaan dhiseynaa jiil aqoon leh, karti leh,
+            akhlaaq leh, una diyaar garooba mustaqbalka.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+
+            <a
+              href="#admission"
+              class="bg-primary text-white px-7 py-4 rounded-xl font-semibold hover:bg-blue-700 transition flex items-center gap-2"
+            >
+              Start Application
+              <i data-lucide="arrow-right" class="w-5"></i>
+            </a>
+
+            <a
+              href="#about"
+              class="bg-white border border-slate-200 px-7 py-4 rounded-xl font-semibold hover:bg-slate-100 transition"
+            >
+              Learn More
+            </a>
+
+          </div>
+
+          <!-- TRUST -->
+
+          <div class="mt-10 flex items-center gap-8">
+
+            <div>
+              <h3 class="text-3xl font-bold">2010+</h3>
+              <p class="text-sm text-slate-500">Students</p>
+            </div>
+
+            <div class="w-px h-12 bg-slate-200"></div>
+
+            <div>
+              <h3 class="text-3xl font-bold">50+</h3>
+              <p class="text-sm text-slate-500">Teachers</p>
+            </div>
+
+            <div class="w-px h-12 bg-slate-200"></div>
+
+            <div>
+              <h3 class="text-3xl font-bold">15+</h3>
+              <p class="text-sm text-slate-500">Years</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- HERO IMAGE -->
+
+        <div class="relative">
+
+          <div class="absolute -inset-5 bg-blue-100 rounded-[3rem] rotate-3"></div>
+
+          <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl">
+
+            <!-- HALKAN SAWIRKA KU BEDDEL -->
+            <img
+              src="images/school.jpg"
+              alt="School"
+              class="w-full h-[550px] object-cover"
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= STATS ================= -->
+
+  <section class="bg-secondary text-white">
+
+    <div class="max-w-7xl mx-auto px-6 py-14">
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+
+        <div>
+          <i data-lucide="users" class="mx-auto w-8 h-8 mb-3"></i>
+          <h3 class="text-4xl font-black">2,000+</h3>
+          <p class="text-slate-400 mt-2">Students</p>
+        </div>
+
+        <div>
+          <i data-lucide="user-round-check" class="mx-auto w-8 h-8 mb-3"></i>
+          <h3 class="text-4xl font-black">50+</h3>
+          <p class="text-slate-400 mt-2">Teachers</p>
+        </div>
+
+        <div>
+          <i data-lucide="book-open" class="mx-auto w-8 h-8 mb-3"></i>
+          <h3 class="text-4xl font-black">20+</h3>
+          <p class="text-slate-400 mt-2">Programs</p>
+        </div>
+
+        <div>
+          <i data-lucide="award" class="mx-auto w-8 h-8 mb-3"></i>
+          <h3 class="text-4xl font-black">15+</h3>
+          <p class="text-slate-400 mt-2">Years Experience</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= ABOUT ================= -->
+
+  <section id="about" class="py-24">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <div>
+
+          <span class="text-primary font-bold">
+            ABOUT OUR SCHOOL
+          </span>
+
+          <h2 class="text-4xl lg:text-5xl font-black mt-3 text-slate-900">
+            Education that creates
+            <span class="text-primary">opportunity.</span>
+          </h2>
+
+          <p class="mt-6 text-slate-600 leading-8">
+            School Name waa xarun waxbarasho oo u heellan
+            horumarinta aqoonta, kartida iyo mustaqbalka ardayda.
+          </p>
+
+          <div class="mt-8 space-y-5">
+
+            <div class="flex gap-4">
+
+              <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+                <i data-lucide="check" class="text-primary"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-lg">
+                  Quality Education
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-1">
+                  Waxbarasho tayo sare leh.
+                </p>
+              </div>
+
+            </div>
+
+            <div class="flex gap-4">
+
+              <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+                <i data-lucide="heart-handshake" class="text-primary"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-lg">
+                  Strong Community
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-1">
+                  Iskaashi u dhexeeya ardayda, waalidiinta iyo macallimiinta.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="grid grid-cols-2 gap-5">
+
+          <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+
+            <i data-lucide="target" class="w-10 h-10 text-primary"></i>
+
+            <h3 class="font-bold text-xl mt-5">
+              Our Mission
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-3 leading-6">
+              In aan abuurno arday leh aqoon iyo karti.
+            </p>
+
+          </div>
+
+
+          <div class="bg-primary text-white rounded-3xl p-8 shadow-xl translate-y-8">
+
+            <i data-lucide="eye" class="w-10 h-10"></i>
+
+            <h3 class="font-bold text-xl mt-5">
+              Our Vision
+            </h3>
+
+            <p class="text-sm text-blue-100 mt-3 leading-6">
+              Mustaqbal wanaagsan oo ku dhisan waxbarasho tayo leh.
+            </p>
+
+          </div>
+
+
+          <div class="bg-slate-900 text-white rounded-3xl p-8 shadow-xl">
+
+            <i data-lucide="lightbulb" class="w-10 h-10 text-yellow-400"></i>
+
+            <h3 class="font-bold text-xl mt-5">
+              Innovation
+            </h3>
+
+            <p class="text-sm text-slate-400 mt-3 leading-6">
+              Hal-abuur iyo fikrado cusub.
+            </p>
+
+          </div>
+
+
+          <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 translate-y-8">
+
+            <i data-lucide="shield-check" class="w-10 h-10 text-primary"></i>
+
+            <h3 class="font-bold text-xl mt-5">
+              Discipline
+            </h3>
+
+            <p class="text-sm text-slate-500 mt-3 leading-6">
+              Akhlaaq iyo nidaam wanaagsan.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= PROGRAMS ================= -->
+
+  <section id="programs" class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center max-w-2xl mx-auto">
+
+        <span class="text-primary font-bold">
+          OUR PROGRAMS
+        </span>
+
+        <h2 class="text-4xl font-black mt-3">
+          Explore Our Programs
+        </h2>
+
+        <p class="text-slate-500 mt-4">
+          Barnaamijyo waxbarasho oo loogu talagalay heerarka kala duwan.
+        </p>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+
+
+        <!-- CARD -->
+
+        <div class="group p-8 rounded-3xl border border-slate-200 hover:shadow-xl hover:-translate-y-2 transition">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+            <i data-lucide="book-open" class="text-primary"></i>
+
+          </div>
+
+          <h3 class="text-xl font-bold mt-6">
+            Primary School
+          </h3>
+
+          <p class="text-slate-500 mt-3 leading-6">
+            Waxbarashada aasaasiga ah iyo horumarinta ilmaha.
+          </p>
+
+          <a href="#" class="text-primary font-semibold mt-6 inline-flex gap-2">
+            Learn More
+            <i data-lucide="arrow-up-right" class="w-4"></i>
+          </a>
+
+        </div>
+
+
+        <div class="group p-8 rounded-3xl border border-slate-200 hover:shadow-xl hover:-translate-y-2 transition">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+            <i data-lucide="graduation-cap" class="text-primary"></i>
+
+          </div>
+
+          <h3 class="text-xl font-bold mt-6">
+            Secondary School
+          </h3>
+
+          <p class="text-slate-500 mt-3 leading-6">
+            Waxbarasho sare oo ardayda u diyaarinaysa jaamacadda.
+          </p>
+
+          <a href="#" class="text-primary font-semibold mt-6 inline-flex gap-2">
+            Learn More
+            <i data-lucide="arrow-up-right" class="w-4"></i>
+          </a>
+
+        </div>
+
+
+        <div class="group p-8 rounded-3xl border border-slate-200 hover:shadow-xl hover:-translate-y-2 transition">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+            <i data-lucide="languages" class="text-primary"></i>
+
+          </div>
+
+          <h3 class="text-xl font-bold mt-6">
+            Languages
+          </h3>
+
+          <p class="text-slate-500 mt-3 leading-6">
+            Barashada English iyo luqadaha kale.
+          </p>
+
+          <a href="#" class="text-primary font-semibold mt-6 inline-flex gap-2">
+            Learn More
+            <i data-lucide="arrow-up-right" class="w-4"></i>
+          </a>
+
+        </div>
+
+
+        <div class="group p-8 rounded-3xl border border-slate-200 hover:shadow-xl hover:-translate-y-2 transition">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+            <i data-lucide="calculator" class="text-primary"></i>
+
+          </div>
+
+          <h3 class="text-xl font-bold mt-6">
+            Mathematics
+          </h3>
+
+          <p class="text-slate-500 mt-3 leading-6">
+            Xisaab iyo fahamka aqoonta tirooyinka.
+          </p>
+
+        </div>
+
+
+        <div class="group p-8 rounded-3xl border border-slate-200 hover:shadow-xl hover:-translate-y-2 transition">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+            <i data-lucide="flask-conical" class="text-primary"></i>
+
+          </div>
+
+          <h3 class="text-xl font-bold mt-6">
+            Science
+          </h3>
+
+          <p class="text-slate-500 mt-3 leading-6">
+            Saynis iyo tijaabooyin waxbarasho.
+          </p>
+
+        </div>
+
+
+        <div class="group p-8 rounded-3xl border border-slate-200 hover:shadow-xl hover:-translate-y-2 transition">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+            <i data-lucide="trophy" class="text-primary"></i>
+
+          </div>
+
+          <h3 class="text-xl font-bold mt-6">
+            Sports
+          </h3>
+
+          <p class="text-slate-500 mt-3 leading-6">
+            Kubadda cagta, tartamada iyo ciyaaraha ardayda.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= TEACHERS ================= -->
+
+  <section id="teachers" class="py-24 bg-slate-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+
+        <div>
+
+          <span class="text-primary font-bold">
+            OUR TEAM
+          </span>
+
+          <h2 class="text-4xl font-black mt-3">
+            Meet Our Teachers
+          </h2>
+
+        </div>
+
+        <a href="#" class="text-primary font-semibold">
+          View All Teachers →
+        </a>
+
+      </div>
+
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+
+        <!-- TEACHER -->
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm">
+
+          <img
+            src="images/teacher-1.jpg"
+            class="w-full h-64 object-cover"
+            alt="Teacher"
+          />
+
+          <div class="p-5">
+
+            <h3 class="font-bold text-lg">
+              Teacher Name
+            </h3>
+
+            <p class="text-primary text-sm mt-1">
+              Mathematics Teacher
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm">
+
+          <img
+            src="images/teacher-2.jpg"
+            class="w-full h-64 object-cover"
+            alt="Teacher"
+          />
+
+          <div class="p-5">
+
+            <h3 class="font-bold text-lg">
+              Teacher Name
+            </h3>
+
+            <p class="text-primary text-sm mt-1">
+              English Teacher
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm">
+
+          <img
+            src="images/teacher-3.jpg"
+            class="w-full h-64 object-cover"
+            alt="Teacher"
+          />
+
+          <div class="p-5">
+
+            <h3 class="font-bold text-lg">
+              Teacher Name
+            </h3>
+
+            <p class="text-primary text-sm mt-1">
+              Science Teacher
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm">
+
+          <img
+            src="images/teacher-4.jpg"
+            class="w-full h-64 object-cover"
+            alt="Teacher"
+          />
+
+          <div class="p-5">
+
+            <h3 class="font-bold text-lg">
+              Teacher Name
+            </h3>
+
+            <p class="text-primary text-sm mt-1">
+              Somali Teacher
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= EVENTS ================= -->
+
+  <section id="events" class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center">
+
+        <span class="text-primary font-bold">
+          SCHOOL EVENTS
+        </span>
+
+        <h2 class="text-4xl font-black mt-3">
+          Upcoming Events
+        </h2>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-3 gap-6 mt-12">
+
+        <div class="border border-slate-200 rounded-3xl p-7">
+
+          <span class="text-primary font-bold">
+            15 OCT
+          </span>
+
+          <h3 class="text-xl font-bold mt-4">
+            Annual Sports Day
+          </h3>
+
+          <p class="text-slate-500 mt-3">
+            Tartanka ciyaaraha dugsiga.
+          </p>
+
+          <div class="flex items-center gap-2 mt-6 text-sm text-slate-500">
+            <i data-lucide="map-pin" class="w-4"></i>
+            School Stadium
+          </div>
+
+        </div>
+
+
+        <div class="border border-slate-200 rounded-3xl p-7">
+
+          <span class="text-primary font-bold">
+            20 OCT
+          </span>
+
+          <h3 class="text-xl font-bold mt-4">
+            Parents Meeting
+          </h3>
+
+          <p class="text-slate-500 mt-3">
+            Kulanka waalidiinta iyo maamulka.
+          </p>
+
+          <div class="flex items-center gap-2 mt-6 text-sm text-slate-500">
+            <i data-lucide="map-pin" class="w-4"></i>
+            Main Hall
+          </div>
+
+        </div>
+
+
+        <div class="border border-slate-200 rounded-3xl p-7">
+
+          <span class="text-primary font-bold">
+            01 NOV
+          </span>
+
+          <h3 class="text-xl font-bold mt-4">
+            Graduation Ceremony
+          </h3>
+
+          <p class="text-slate-500 mt-3">
+            Xafladda qalin-jabinta ardayda.
+          </p>
+
+          <div class="flex items-center gap-2 mt-6 text-sm text-slate-500">
+            <i data-lucide="map-pin" class="w-4"></i>
+            School Hall
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= ADMISSION ================= -->
+
+  <section id="admission" class="py-24">
+
+    <div class="max-w-5xl mx-auto px-6">
+
+      <div class="bg-secondary rounded-[2rem] p-10 lg:p-16 text-white text-center">
+
+        <span class="text-blue-300 font-bold">
+          ADMISSIONS
+        </span>
+
+        <h2 class="text-4xl lg:text-5xl font-black mt-4">
+          Give Your Child a Better Future
+        </h2>
+
+        <p class="text-slate-400 mt-5 max-w-2xl mx-auto">
+          Ku soo biir dugsigeenna oo hel waxbarasho tayo leh
+          iyo fursado horumarineed.
+        </p>
+
+        <div class="mt-8">
+
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 bg-primary px-7 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
+          >
+            Apply for Admission
+            <i data-lucide="arrow-right"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CONTACT ================= -->
+
+  <section id="contact" class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid lg:grid-cols-2 gap-14">
+
+        <div>
+
+          <span class="text-primary font-bold">
+            CONTACT US
+          </span>
+
+          <h2 class="text-4xl font-black mt-3">
+            Get in Touch
+          </h2>
+
+          <p class="text-slate-500 mt-5 leading-7">
+            Haddii aad wax su'aalo ah qabto ama aad rabto
+            macluumaad dheeraad ah, nala soo xiriir.
+          </p>
+
+
+          <div class="mt-8 space-y-5">
+
+            <div class="flex gap-4">
+
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <i data-lucide="map-pin" class="text-primary"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold">
+                  Address
+                </h3>
+
+                <p class="text-slate-500 text-sm">
+                  Muqdisho, Soomaaliya
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="flex gap-4">
+
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <i data-lucide="phone" class="text-primary"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold">
+                  Phone
+                </h3>
+
+                <p class="text-slate-500 text-sm">
+                  +252 61 XXX XXXX
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="flex gap-4">
+
+              <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                <i data-lucide="mail" class="text-primary"></i>
+              </div>
+
+              <div>
+                <h3 class="font-bold">
+                  Email
+                </h3>
+
+                <p class="text-slate-500 text-sm">
+                  info@school.com
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONTACT FORM -->
+
+        <form
+          class="bg-slate-50 p-8 rounded-3xl border border-slate-200"
+          onsubmit="sendMessage(event)"
+        >
+
+          <div class="grid md:grid-cols-2 gap-5">
+
+            <div>
+
+              <label class="text-sm font-semibold">
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                required
+                placeholder="Your name"
+                class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-primary"
+              />
+
+            </div>
+
+
+            <div>
+
+              <label class="text-sm font-semibold">
+                Email
+              </label>
+
+              <input
+                type="email"
+                required
+                placeholder="you@example.com"
+                class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-primary"
+              />
+
+            </div>
+
+          </div>
+
+
+          <div class="mt-5">
+
+            <label class="text-sm font-semibold">
+              Subject
+            </label>
+
+            <input
+              type="text"
+              required
+              placeholder="Subject"
+              class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-primary"
+            />
+
+          </div>
+
+
+          <div class="mt-5">
+
+            <label class="text-sm font-semibold">
+              Message
+            </label>
+
+            <textarea
+              rows="5"
+              required
+              placeholder="Write your message..."
+              class="mt-2 w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-primary"
+            ></textarea>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="mt-6 w-full bg-primary text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition"
+          >
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="bg-secondary text-white">
+
+    <div class="max-w-7xl mx-auto px-6 py-16">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <div>
+
+          <h2 class="text-xl font-black">
+            SCHOOL NAME
+          </h2>
+
+          <p class="text-slate-400 mt-4 leading-7">
+            Building bright futures through quality education.
+          </p>
+
+          <div class="flex gap-3 mt-6">
+
+            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary transition">
+              <i data-lucide="facebook"></i>
+            </a>
+
+            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary transition">
+              <i data-lucide="instagram"></i>
+            </a>
+
+            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-primary transition">
+              <i data-lucide="youtube"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold">
+            Quick Links
+          </h3>
+
+          <div class="flex flex-col gap-3 mt-5 text-slate-400 text-sm">
+
+            <a href="#about" class="hover:text-white">
+              About
+            </a>
+
+            <a href="#programs" class="hover:text-white">
+              Programs
+            </a>
+
+            <a href="#teachers" class="hover:text-white">
+              Teachers
+            </a>
+
+            <a href="#events" class="hover:text-white">
+              Events
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold">
+            Student
+          </h3>
+
+          <div class="flex flex-col gap-3 mt-5 text-slate-400 text-sm">
+
+            <a href="#" class="hover:text-white">
+              Student Portal
+            </a>
+
+            <a href="#" class="hover:text-white">
+              Results
+            </a>
+
+            <a href="#" class="hover:text-white">
+              Timetable
+            </a>
+
+            <a href="#" class="hover:text-white">
+              Academic Calendar
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold">
+            Contact
+          </h3>
+
+          <div class="flex flex-col gap-4 mt-5 text-slate-400 text-sm">
+
+            <p>
+              Muqdisho, Soomaaliya
+            </p>
+
+            <p>
+              +252 61 XXX XXXX
+            </p>
+
+            <p>
+              info@school.com
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm text-slate-500">
+
+        © 2026 School Name. All rights reserved.
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    lucide.createIcons();
+
+
+    // Mobile menu
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+
+      mobileMenu.classList.toggle("hidden");
+
+    });
+
+
+    // Contact form
+
+    function sendMessage(event) {
+
+      event.preventDefault();
+
+      alert("Thank you! Your message has been received.");
+
+      event.target.reset();
+
+    }
+
+  </script>
+
+</body>
+</html>
+```
