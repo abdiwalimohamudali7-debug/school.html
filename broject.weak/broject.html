@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>broject.weak</title>
+    <!-- Tailwind CSS CDN for modern responsive utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Nav Bar Animations */
+        .nav-btn {
+            position: relative;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .nav-btn.active {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.15);
+            font-weight: 700;
+        }
+
+        /* Tab Content Switching */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* 1. ROCK PAPER SCISSORS STYLES */
+        .rps-choice-card {
+            background-color: #10cba0;
+            width: 90px;
+            height: 110px;
+            border-radius: 12px;
+            border: 3px solid #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.15s ease, background-color 0.2s ease;
+            font-size: 45px;
+            user-select: none;
+        }
+
+        .rps-choice-card:hover {
+            transform: translateY(-3px);
+            background-color: #0eb38d;
+        }
+
+        .rps-choice-card:active {
+            transform: scale(0.95);
+        }
+
+        .computer-card {
+            background-color: #10cba0;
+            width: 90px;
+            height: 110px;
+            border-radius: 12px;
+            border: 3px solid #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 45px;
+        }
+
+        /* 2. MEMORY CARD GAME STYLES */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(70px, 90px));
+            gap: 12px;
+            perspective: 1000px;
+        }
+
+        .memory-card {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            user-select: none;
+        }
+
+        .card-front {
+            background: #0f3460;
+            border: 2px solid #e94560;
+        }
+
+        .card-front::after {
+            content: "?";
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .card-back {
+            background: #16213e;
+            border: 2px solid #00fff5;
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched .card-back {
+            border-color: #4ecca3;
+            background: #1f4037;
+        }
+
+        /* 3. EVC PLUS SIMULATOR STYLES */
+        .phone-card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 360px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 3px solid #008751;
+        }
+
+        .evc-header {
+            background-color: #008751;
+            color: #ffeb3b;
+            padding: 18px;
+            text-align: center;
+            border-bottom: 4px solid #ffeb3b;
+        }
+
+        .evc-screen {
+            background-color: #f4f9f5;
+            border: 2px dashed #008751;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            color: #1b4332;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+            white-space: pre-line;
+            line-height: 1.5;
+        }
+
+        .toast-modal {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 min-h-screen flex flex-col text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="w-full bg-slate-800 border-b border-slate-700 sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center py-3 gap-3">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl">abdi</span>
+                <span class="font-extrabold text-xl tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
+                    broject.weak
+                </span>
+            </div>
+
+            <nav class="flex flex-wrap justify-center gap-2">
+                <button onclick="switchTab('rps')" id="nav-rps" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700 active">
+                    Rock Paper Scissors
+                </button>
+                <button onclick="switchTab('memory')" id="nav-memory" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700">
+                    Memory Game
+                </button>
+                <button onclick="switchTab('evc')" id="nav-evc" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700">
+                    EVC Plus Simulator
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Modal Notification Banner -->
+    <div id="customModal" class="toast-modal bg-emerald-600 text-white px-6 py-3 rounded-lg shadow-xl border border-emerald-400 font-semibold items-center space-x-2">
+        <span id="modalMessage">Congratulations!</span>
+        <button onclick="closeModal()" class="ml-4 bg-emerald-800 hover:bg-emerald-900 px-2 py-1 rounded text-xs">✕ Close</button>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 flex justify-center items-center">
+
+        <!-- SECTION 1: ROCK PAPER SCISSORS GAME -->
+        <section id="tab-rps" class="tab-content active flex-col items-center justify-between w-full max-w-md bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
+            <h1 class="text-2xl font-bold text-center text-white mb-6">Rock Paper Scissors</h1>
+
+            <div class="flex justify-center gap-3 mb-6 w-full">
+                <div class="rps-choice-card" id="RockOption" title="Rock">✊</div>
+                <div class="rps-choice-card" id="PapperOption" title="Paper">✋</div>
+                <div class="rps-choice-card" id="ScissorsOption" title="Scissors">✌️</div>
+            </div>
+
+            <div class="flex flex-col items-center mb-6">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Computer Pick</span>
+                <div class="computer-card" id="computerDisplay">✊</div>
+            </div>
+
+            <button class="bg-white hover:bg-gray-100 text-red-600 font-bold py-2 px-6 rounded-lg shadow transition flex items-center gap-2 mb-6" id="resetBtn">
+                <span class="inline-block transform -rotate-45">↺</span> Reset Game
+            </button>
+
+            <div class="w-full bg-white text-slate-900 font-extrabold flex justify-around items-center py-4 px-2 rounded-xl shadow border-t-4 border-red-500">
+                <div class="flex items-center gap-1">Win: <span id="WinScore" class="text-emerald-600">0</span></div>
+                <div class="flex items-center gap-1">Lose: <span id="LoseScore" class="text-red-600">0</span></div>
+                <div class="flex items-center gap-1">Draw: <span id="DrawScore" class="text-amber-600">0</span></div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: MEMORY CARD GAME -->
+        <section id="tab-memory" class="tab-content flex-col items-center w-full max-w-lg bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
+            <h1 class="text-2xl font-bold text-rose-500 mb-4 text-center">Memory Card Game</h1>
+
+            <div class="flex gap-6 mb-6 text-lg bg-slate-900 px-6 py-3 rounded-lg border border-slate-700 font-semibold">
+                <div>Moves: <span id="moves" class="text-cyan-400">0</span></div>
+                <div>Matches: <span id="matches" class="text-emerald-400">0</span> / 8</div>
+            </div>
+
+            <div class="memory-grid mb-6" id="grid"></div>
+
+            <button class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-6 rounded-lg transition" onclick="restartGame()">
+                Restart Game
+            </button>
+        </section>
+
+        <!-- SECTION 3: EVC PLUS SIMULATOR -->
+        <section id="tab-evc" class="tab-content flex-col items-center justify-center w-full">
+            <div class="phone-card">
+                <div class="evc-header">
+                    <h1 class="text-xl font-bold tracking-wider">HORMUUD</h1>
+                    <p class="text-xs text-white">EVC Plus Services</p>
+                </div>
+
+                <div class="p-5 text-center">
+                    <div class="evc-screen" id="screen">Soo dhawoow!
+
+Geli koodhka *770# ama *711#</div>
+
+                    <input type="text" id="userInput" placeholder="Geli (Tusaale: *770#)" class="w-full p-3 border-2 border-gray-300 rounded-lg text-center text-slate-800 text-base focus:border-emerald-600 outline-none transition mb-4">
+
+                    <div class="space-y-2">
+                        <button id="sendBtn" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition" onclick="handleUSSD()">Dir (Send)</button>
+                        <button id="okBtn" class="w-full py-3 bg-yellow-400 hover:bg-yellow-500 text-emerald-900 font-bold rounded-lg border-2 border-emerald-600 transition hidden" onclick="resetApp()">OK</button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 text-center py-2 text-xs text-gray-500">
+                    Simulation Interface
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            document.getElementById(`nav-${tabName}`).classList.add('active');
+        }
+
+        function showNotification(msg) {
+            const modal = document.getElementById('customModal');
+            document.getElementById('modalMessage').textContent = msg;
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 4000);
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').style.display = 'none';
+        }
+
+        // 1. ROCK PAPER SCISSORS LOGIC
+        let winCount = 0;
+        let loseCount = 0;
+        let drawCount = 0;
+
+        const rockOption = document.getElementById('RockOption');
+        const paperOption = document.getElementById('PapperOption');
+        const scissorsOption = document.getElementById('ScissorsOption');
+        const computerDisplay = document.getElementById('computerDisplay');
+        const winScoreElement = document.getElementById('WinScore');
+        const loseScoreElement = document.getElementById('LoseScore');
+        const drawScoreElement = document.getElementById('DrawScore');
+        const resetBtn = document.getElementById('resetBtn');
+
+        const choices = ['rock', 'paper', 'scissors'];
+        const mojis = {
+            'rock': '✊',
+            'paper': '✋',
+            'scissors': '✌️'
+        };
+
+        function getComputerChoice() {
+            const randomIndex = Math.floor(Math.random() * choices.length);
+            return choices[randomIndex];
+        }
+
+        function playGame(playerChoice) {
+            const computerChoice = getComputerChoice();
+            computerDisplay.innerHTML = mojis[computerChoice];
+
+            if (playerChoice === computerChoice) {
+                drawCount++;
+                drawScoreElement.textContent = drawCount;
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                winCount++;
+                winScoreElement.textContent = winCount;
+            } else {
+                loseCount++;
+                loseScoreElement.textContent = loseCount;
+            }
+        }
+
+        rockOption.addEventListener('click', () => playGame('rock'));
+        paperOption.addEventListener('click', () => playGame('paper'));
+        scissorsOption.addEventListener('click', () => playGame('scissors'));
+
+        resetBtn.addEventListener('click', () => {
+            winCount = 0;
+            loseCount = 0;
+            drawCount = 0;
+            winScoreElement.textContent = 0;
+            loseScoreElement.textContent = 0;
+            drawScoreElement.textContent = 0;
+            computerDisplay.innerHTML = '✊';
+        });
+
+        // 2. MEMORY CARD GAME LOGIC
+        const emojis = ['🍎', '🍌', '🍒', '🍇', '🍉', '🍓', '🥑', '🍍'];
+        const grid = document.getElementById('grid');
+        const movesEl = document.getElementById('moves');
+        const matchesEl = document.getElementById('matches');
+
+        let flippedCards = [];
+        let moves = 0;
+        let matches = 0;
+        let isBoardLocked = false;
+
+        function initGame() {
+            grid.innerHTML = '';
+            flippedCards = [];
+            moves = 0;
+            matches = 0;
+            isBoardLocked = false;
+            movesEl.textContent = moves;
+            matchesEl.textContent = matches;
+
+            const deck = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+
+            deck.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.classList.add('memory-card');
+                card.dataset.symbol = symbol;
+                card.dataset.index = index;
+
+                card.innerHTML = `
+                    <div class="card-face card-front"></div>
+                    <div class="card-face card-back">${symbol}</div>
+                `;
+
+                card.addEventListener('click', () => flipCard(card));
+                grid.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (isBoardLocked || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            moves++;
+            movesEl.textContent = moves;
+
+            const [firstCard, secondCard] = flippedCards;
+            const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
+
+            if (isMatch) {
+                firstCard.classList.add('matched');
+                secondCard.classList.add('matched');
+                flippedCards = [];
+                matches++;
+                matchesEl.textContent = matches;
+
+                if (matches === emojis.length) {
+                    setTimeout(() => showNotification(`🎉 Congratulations! You won in ${moves} moves.`), 300);
+                }
+            } else {
+                isBoardLocked = true;
+                setTimeout(() => {
+                    firstCard.classList.remove('flipped');
+                    secondCard.classList.remove('flipped');
+                    flippedCards = [];
+                    isBoardLocked = false;
+                }, 1000);
+            }
+        }
+
+        function restartGame() {
+            initGame();
+        }
+
+        initGame();
+
+        // 3. EVC PLUS SIMULATOR LOGIC
+        let state = 0;
+        let activeCode = "";
+        let subState = null;
+        let balance = 45.50;
+        let targetPhone = "";
+        let transferAmount = 0;
+        
+        // Halkan ka raadi PIN-ka iyo Luqadda ku kaydsan LocalStorage
+        let correctPIN = localStorage.getItem("evc_pin") || "1234";
+        let currentLang = localStorage.getItem("evc_lang") || "SO";
+        let tempNewPIN = "";
+
+        function handleUSSD() {
+            const inputVal = document.getElementById("userInput").value.trim();
+            const screen = document.getElementById("screen");
+            const userInput = document.getElementById("userInput");
+
+            if (state === 0) {
+                if (inputVal === "*711#" || inputVal === "*770#") {
+                    activeCode = inputVal;
+                    state = 1;
+                    screen.innerText = currentLang === "SO" 
+                        ? "EVC Plus\nFadlan geli PIN-kaaga:" 
+                        : "EVC Plus\nPlease enter your PIN:";
+                    userInput.value = "";
+                    userInput.type = "password";
+                    userInput.placeholder = "****";
+                } else {
+                    screen.innerText = currentLang === "SO"
+                        ? "Koodhka aad gelisay waa qalad.\nFadlan adeegso *770# ama *711#"
+                        : "Invalid code entered.\nPlease use *770# or *711#";
+                }
+            }
+            else if (state === 1) {
+                const isFourDigits = /^\d{4}$/.test(inputVal);
+
+                if (isFourDigits && inputVal === correctPIN) {
+                    if (activeCode === "*711#") {
+                        showFinalScreen(currentLang === "SO"
+                            ? `[-EVCPlus-]\nHaraagaaga waa $${balance.toFixed(2)}.\nMahadsanid!`
+                            : `[-EVCPlus-]\nYour balance is $${balance.toFixed(2)}.\nThank you!`);
+                    } else if (activeCode === "*770#") {
+                        showMainMenu();
+                    }
+                } else {
+                    showFinalScreen(currentLang === "SO" ? "Waa qalad PIN-ka aad galisay." : "Incorrect PIN entered.");
+                }
+            }
+            else if (state === 2) {
+                userInput.value = "";
+                userInput.type = "text";
+
+                switch (inputVal) {
+                    case "1":
+                        showFinalScreen(currentLang === "SO"
+                            ? `[-EVCPlus-]\nHaraagaaga waa $${balance.toFixed(2)}.\nMahadsanid!`
+                            : `[-EVCPlus-]\nYour balance is $${balance.toFixed(2)}.\nThank you!`);
+                        break;
+                    case "2":
+                        state = 3;
+                        subState = "airtime";
+                        screen.innerText = currentLang === "SO"
+                            ? "Kaarka Hadalka:\n1. Ku shub ku dhiif\n2. Uugu shub EVCPlus kale"
+                            : "Airtime:\n1. Recharge self\n2. Recharge other EVCPlus";
+                        userInput.placeholder = "Dooro (1-2)";
+                        break;
+                    case "3":
+                        state = 3;
+                        subState = "paybill";
+                        screen.innerText = currentLang === "SO"
+                            ? "Bixi Biil:\n1. Postpaid\n2. Ganacsade"
+                            : "Pay Bill:\n1. Postpaid\n2. Merchant";
+                        userInput.placeholder = "Dooro (1-2)";
+                        break;
+                    case "4":
+                        state = 3;
+                        subState = "transfer_phone";
+                        screen.innerText = currentLang === "SO"
+                            ? "U wareeji EVCPlus:\nGeli nambarka aad lacagta u direyso"
+                            : "Transfer EVCPlus:\nEnter mobile number to send money";
+                        userInput.placeholder = "61XXXXXXX";
+                        userInput.type = "number";
+                        break;
+                    case "5":
+                        showFinalScreen(currentLang === "SO"
+                            ? "Warbixin Kooban:\n1. Received $10.00 from 615112233\n2. Paid $5.00 to Merchant (4521)\n3. Sent $2.50 to 615998877"
+                            : "Mini Statement:\n1. Received $10.00 from 615112233\n2. Paid $5.00 to Merchant (4521)\n3. Sent $2.50 to 615998877");
+                        break;
+                    case "6":
+                        state = 3;
+                        subState = "salaam";
+                        screen.innerText = currentLang === "SO"
+                            ? "Salaam Bank:\n1. Ka shub Bankiga\n2. U wareeji Bankiga"
+                            : "Salaam Bank:\n1. Deposit to Bank\n2. Transfer to Bank";
+                        userInput.placeholder = "Dooro (1-2)";
+                        break;
+                    case "7":
+                        state = 3;
+                        subState = "manage";
+                        screen.innerText = currentLang === "SO"
+                            ? "Maareynta:\n1. Baddal PIN-ka\n2. Baddal Luqadda"
+                            : "Management:\n1. Change PIN\n2. Change Language";
+                        userInput.placeholder = "Dooro (1-2)";
+                        break;
+                    case "8":
+                        state = 3;
+                        subState = "bill_payment";
+                        screen.innerText = currentLang === "SO"
+                            ? "Bill Payment:\n1. Bixi Biilka Korontada/Biyaha\n2. Raadi Bixiye"
+                            : "Bill Payment:\n1. Pay Water/Electric Bill\n2. Search Provider";
+                        userInput.placeholder = "Dooro (1-2)";
+                        break;
+                    default:
+                        screen.innerText = currentLang === "SO" 
+                            ? "Doorasho qalad ah.\nFadlan dooro 1 - 8."
+                            : "Invalid option.\nPlease select 1 - 8.";
+                }
+            }
+            else if (state === 3) {
+                handleSubMenuFlow(inputVal);
+            }
+        }
+
+        function showMainMenu() {
+            state = 2;
+            const screen = document.getElementById("screen");
+            const userInput = document.getElementById("userInput");
+
+            screen.innerText = currentLang === "SO"
+                ? "EVCPlus\n1. Itus Haraaga\n2. Kaarka hadalka\n3. Bixi Biil\n4. U wareeji EVCPlus\n5. Warbixin Kooban\n6. Salaam Bank\n7. Maareynta\n8. Bill Payment"
+                : "EVCPlus\n1. Check Balance\n2. Airtime\n3. Pay Bill\n4. Transfer EVCPlus\n5. Mini Statement\n6. Salaam Bank\n7. Management\n8. Bill Payment";
+
+            userInput.value = "";
+            userInput.type = "text";
+            userInput.placeholder = currentLang === "SO" ? "Dooro (1-8)" : "Select (1-8)";
+        }
+
+        function handleSubMenuFlow(val) {
+            const screen = document.getElementById("screen");
+            const userInput = document.getElementById("userInput");
+
+            if (subState === "airtime") {
+                if (val === "1" || val === "2") {
+                    showFinalScreen(currentLang === "SO" 
+                        ? "Kaarka Hadalka:\nWaxaa si guul leh loogu shubay kaarka hadalka."
+                        : "Airtime:\nRecharged successfully.");
+                } else {
+                    screen.innerText = currentLang === "SO" ? "Doorasho qalad ah. Dooro 1 ama 2." : "Invalid option. Select 1 or 2.";
+                }
+            }
+            else if (subState === "paybill") {
+                if (val === "1" || val === "2") {
+                    showFinalScreen(currentLang === "SO" 
+                        ? "Bixi Biil:\nBiilkaaga si guul leh ayaa loo bixiyay."
+                        : "Pay Bill:\nBill paid successfully.");
+                } else {
+                    screen.innerText = currentLang === "SO" ? "Doorasho qalad ah. Dooro 1 ama 2." : "Invalid option. Select 1 or 2.";
+                }
+            }
+            else if (subState === "transfer_phone") {
+                const phoneRegex = /^61\d{7}$/;
+                if (phoneRegex.test(val)) {
+                    targetPhone = val;
+                    subState = "transfer_amount";
+                    screen.innerText = currentLang === "SO" 
+                        ? `Nambarka: ${targetPhone}\n\nGeli Lacagta ($):`
+                        : `Number: ${targetPhone}\n\nEnter Amount ($):`;
+                    userInput.value = "";
+                    userInput.placeholder = "5";
+                } else {
+                    screen.innerText = currentLang === "SO" ? "Qalad!\nGeli nambarka sax ah" : "Error!\nEnter valid phone number";
+                    userInput.value = "";
+                }
+            }
+            else if (subState === "transfer_amount") {
+                const amount = parseFloat(val);
+                if (!isNaN(amount) && amount > 0 && amount <= balance) {
+                    transferAmount = amount;
+                    balance -= transferAmount;
+                    showFinalScreen(currentLang === "SO" 
+                        ? `[-EVCPlus-]\nWaxaa $${transferAmount.toFixed(2)} u wareejisay ${targetPhone}.\nHaraagaaga cusub waa $${balance.toFixed(2)}.`
+                        : `[-EVCPlus-]\nYou transferred $${transferAmount.toFixed(2)} to ${targetPhone}.\nNew balance: $${balance.toFixed(2)}.`);
+                } else if (amount > balance) {
+                    showFinalScreen(currentLang === "SO"
+                        ? `Haraagaaga kuuma filna. Haraagaaga waa $${balance.toFixed(2)}.`
+                        : `Insufficient balance. Your balance is $${balance.toFixed(2)}.`);
+                } else {
+                    screen.innerText = currentLang === "SO" ? "Qalad!\nGeli lacag sax ah ($):" : "Error!\nEnter valid amount ($):";
+                    userInput.value = "";
+                }
+            }
+            else if (subState === "manage") {
+                if (val === "1") {
+                    subState = "change_pin_old";
+                    screen.innerText = currentLang === "SO" 
+                        ? "Baddal PIN-ka:\nGeli PIN-kaaga hore:"
+                        : "Change PIN:\nEnter current PIN:";
+                    userInput.value = "";
+                    userInput.type = "password";
+                    userInput.placeholder = "****";
+                } else if (val === "2") {
+                    currentLang = currentLang === "SO" ? "EN" : "SO";
+                    localStorage.setItem("evc_lang", currentLang); // Kaydi Luqadda
+                    showFinalScreen(currentLang === "SO" 
+                        ? "Luqadda si guul leh ayaa loogu baddalay Soomaali."
+                        : "Language changed to English successfully.");
+                } else {
+                    screen.innerText = currentLang === "SO" ? "Doorasho qalad ah. Dooro 1 ama 2." : "Invalid option. Select 1 or 2.";
+                }
+            }
+            else if (subState === "change_pin_old") {
+                if (val === correctPIN) {
+                    subState = "change_pin_new";
+                    screen.innerText = currentLang === "SO" 
+                        ? "Geli PIN-ka cusub (4 nambar):"
+                        : "Enter new 4-digit PIN:";
+                    userInput.value = "";
+                } else {
+                    showFinalScreen(currentLang === "SO" ? "PIN-kaaga hore waa qalad!" : "Incorrect old PIN!");
+                }
+            }
+            else if (subState === "change_pin_new") {
+                if (/^\d{4}$/.test(val)) {
+                    tempNewPIN = val;
+                    subState = "change_pin_confirm";
+                    screen.innerText = currentLang === "SO" 
+                        ? "Xaqiiji PIN-ka cusub:"
+                        : "Confirm new PIN:";
+                    userInput.value = "";
+                } else {
+                    screen.innerText = currentLang === "SO" 
+                        ? "Qalad! PIN-ku waa inuu yahay 4 nambar:"
+                        : "Error! PIN must be 4 digits:";
+                    userInput.value = "";
+                }
+            }
+            else if (subState === "change_pin_confirm") {
+                if (val === tempNewPIN) {
+                    correctPIN = tempNewPIN;
+                    localStorage.setItem("evc_pin", correctPIN); // Kaydi PIN-ka cusub
+
+                    showFinalScreen(currentLang === "SO" 
+                        ? "PIN-kaaga si guul leh ayaa loo baddalay!"
+                        : "Your PIN has been changed successfully!");
+                } else {
+                    showFinalScreen(currentLang === "SO" 
+                        ? "PIN-ka cusub iyo xaqiijintu way isku afgaran waayeen!"
+                        : "PIN confirmation does not match!");
+                }
+            }
+            else if (subState === "salaam" || subState === "bill_payment") {
+                if (val === "1" || val === "2") {
+                    showFinalScreen(currentLang === "SO" 
+                        ? "Codsigaaga si guul leh ayaa loo fuliyay."
+                        : "Your request has been processed successfully.");
+                } else {
+                    screen.innerText = currentLang === "SO" ? "Doorasho qalad ah. Dooro 1 ama 2." : "Invalid option. Select 1 or 2.";
+                }
+            }
+        }
+
+        function showFinalScreen(message) {
+            state = 4;
+            const screen = document.getElementById("screen");
+            const userInput = document.getElementById("userInput");
+            const sendBtn = document.getElementById("sendBtn");
+            const okBtn = document.getElementById("okBtn");
+
+            screen.innerText = message;
+            userInput.classList.add("hidden");
+            sendBtn.classList.add("hidden");
+            okBtn.classList.remove("hidden");
+        }
+
+        function resetApp() {
+            state = 0;
+            activeCode = "";
+            subState = null;
+            targetPhone = "";
+            transferAmount = 0;
+
+            const screen = document.getElementById("screen");
+            const userInput = document.getElementById("userInput");
+            const sendBtn = document.getElementById("sendBtn");
+            const okBtn = document.getElementById("okBtn");
+
+            userInput.classList.remove("hidden");
+            userInput.type = "text";
+            userInput.value = "";
+            userInput.placeholder = "Geli (Tusaale: *770#)";
+
+            sendBtn.classList.remove("hidden");
+            okBtn.classList.add("hidden");
+
+            screen.innerText = currentLang === "SO" 
+                ? "Soo dhawoow!\n\nGeli koodhka *770# ama *711#"
+                : "Welcome!\n\nEnter code *770# or *711#";
+        }
+    </script>
+</body>
+
+</html>

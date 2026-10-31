@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Web Apps Suite</title>
+    <title>broject.weak</title>
     <!-- Tailwind CSS CDN for modern responsive utility styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        
+
         * {
             box-sizing: border-box;
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -147,7 +148,7 @@
             width: 100%;
             max-width: 360px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             overflow: hidden;
             border: 3px solid #008751;
         }
@@ -189,6 +190,7 @@
         }
     </style>
 </head>
+
 <body class="bg-slate-900 min-h-screen flex flex-col text-white">
 
     <!-- Top Navigation Bar -->
@@ -197,30 +199,36 @@
             <!-- Logo / Brand Title -->
             <div class="flex items-center space-x-2">
                 <span class="text-2xl">abdi</span>
-                <span class="font-extrabold text-xl tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
-                   broject.weak
+                <span
+                    class="font-extrabold text-xl tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">
+                    broject.weak
                 </span>
             </div>
 
             <!-- Navigation Links -->
             <nav class="flex flex-wrap justify-center gap-2">
-                <button onclick="switchTab('rps')" id="nav-rps" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700 active">
+                <button onclick="switchTab('rps')" id="nav-rps"
+                    class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700 active">
                     Rock Paper Scissors
                 </button>
-                <button onclick="switchTab('memory')" id="nav-memory" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700">
-                     Memory Game
+                <button onclick="switchTab('memory')" id="nav-memory"
+                    class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700">
+                    Memory Game
                 </button>
-                <button onclick="switchTab('evc')" id="nav-evc" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700">
-                     EVC Plus Simulator
+                <button onclick="switchTab('evc')" id="nav-evc"
+                    class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-yellow-700">
+                    EVC Plus Simulator
                 </button>
             </nav>
         </div>
     </header>
 
     <!-- Modal Notification Banner (Replaces alert) -->
-    <div id="customModal" class="toast-modal bg-emerald-600 text-white px-6 py-3 rounded-lg shadow-xl border border-emerald-400 font-semibold items-center space-x-2">
+    <div id="customModal"
+        class="toast-modal bg-emerald-600 text-white px-6 py-3 rounded-lg shadow-xl border border-emerald-400 font-semibold items-center space-x-2">
         <span id="modalMessage">Congratulations!</span>
-        <button onclick="closeModal()" class="ml-4 bg-emerald-800 hover:bg-emerald-900 px-2 py-1 rounded text-xs">✕ Close</button>
+        <button onclick="closeModal()" class="ml-4 bg-emerald-800 hover:bg-emerald-900 px-2 py-1 rounded text-xs">✕
+            Close</button>
     </div>
 
     <!-- Main Content Container -->
@@ -229,9 +237,10 @@
         <!-- ====================================================
              SECTION 1: ROCK PAPER SCISSORS GAME
         ==================================================== -->
-        <section id="tab-rps" class="tab-content active flex-col items-center justify-between w-full max-w-md bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
+        <section id="tab-rps"
+            class="tab-content active flex-col items-center justify-between w-full max-w-md bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
             <h1 class="text-2xl font-bold text-center text-white mb-6">Rock Paper Scissors</h1>
-            
+
             <div class="flex justify-center gap-3 mb-6 w-full">
                 <div class="rps-choice-card" id="RockOption" title="Rock">✊</div>
                 <div class="rps-choice-card" id="PapperOption" title="Paper">✋</div>
@@ -239,16 +248,19 @@
             </div>
 
             <div class="flex flex-col items-center mb-6">
-                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Computer Pick</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Computer play</span>
                 <div class="computer-card" id="computerDisplay">✊</div>
             </div>
 
-            <button class="bg-white hover:bg-gray-100 text-red-600 font-bold py-2 px-6 rounded-lg shadow transition flex items-center gap-2 mb-6" id="resetBtn">
-                <span class="inline-block transform -rotate-45">↺</span> Reset Game
+            <button
+                class="bg-white hover:bg-gray-100 text-red-600 font-bold py-2 px-6 rounded-lg shadow transition flex items-center gap-2 mb-6"
+                id="resetBtn">
+                <span class="inline-block transform -rotate-45"></span> mar kale ciyaar
             </button>
 
             <!-- Scoreboard -->
-            <div class="w-full bg-white text-slate-900 font-extrabold flex justify-around items-center py-4 px-2 rounded-xl shadow border-t-4 border-red-500">
+            <div
+                class="w-full bg-white text-slate-900 font-extrabold flex justify-around items-center py-4 px-2 rounded-xl shadow border-t-4 border-red-500">
                 <div class="flex items-center gap-1">Win: <span id="WinScore" class="text-emerald-600">0</span></div>
                 <div class="flex items-center gap-1">Lose: <span id="LoseScore" class="text-red-600">0</span></div>
                 <div class="flex items-center gap-1">Draw: <span id="DrawScore" class="text-amber-600">0</span></div>
@@ -258,17 +270,20 @@
         <!-- ====================================================
              SECTION 2: MEMORY CARD GAME
         ==================================================== -->
-        <section id="tab-memory" class="tab-content flex-col items-center w-full max-w-lg bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
+        <section id="tab-memory"
+            class="tab-content flex-col items-center w-full max-w-lg bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
             <h1 class="text-2xl font-bold text-rose-500 mb-4 text-center">Memory Card Game</h1>
 
-            <div class="flex gap-6 mb-6 text-lg bg-slate-900 px-6 py-3 rounded-lg border border-slate-700 font-semibold">
-                <div>Moves: <span id="moves" class="text-cyan-400">0</span></div>
+            <div
+                class="flex gap-6 mb-6 text-lg bg-slate-900 px-6 py-3 rounded-lg border border-slate-700 font-semibold">
+                <div>isku dayga: <span id="moves" class="text-cyan-400">0</span></div>
                 <div>Matches: <span id="matches" class="text-emerald-400">0</span> / 8</div>
             </div>
 
             <div class="memory-grid mb-6" id="grid"></div>
 
-            <button class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-6 rounded-lg transition" onclick="restartGame()">
+            <button class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-6 rounded-lg transition"
+                onclick="restartGame()">
                 Restart Game
             </button>
         </section>
@@ -286,13 +301,18 @@
                 <div class="p-5 text-center">
                     <div class="evc-screen" id="screen">Soo dhawoow!
 
-Geli koodhka *770# ama *711#</div>
+                        Geli koodhka *770# ama *711#</div>
 
-                    <input type="text" id="userInput" placeholder="Geli (Tusaale: *770#)" class="w-full p-3 border-2 border-gray-300 rounded-lg text-center text-slate-800 text-base focus:border-emerald-600 outline-none transition mb-4">
+                    <input type="text" id="userInput" placeholder="Geli (Tusaale: *770#)"
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg text-center text-slate-800 text-base focus:border-emerald-600 outline-none transition mb-4">
 
                     <div class="space-y-2">
-                        <button id="sendBtn" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition" onclick="handleUSSD()">Dir (Send)</button>
-                        <button id="okBtn" class="w-full py-3 bg-yellow-400 hover:bg-yellow-500 text-emerald-900 font-bold rounded-lg border-2 border-emerald-600 transition hidden" onclick="resetApp()">OK</button>
+                        <button id="sendBtn"
+                            class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition"
+                            onclick="handleUSSD()">Dir (Send)</button>
+                        <button id="okBtn"
+                            class="w-full py-3 bg-yellow-400 hover:bg-yellow-500 text-emerald-900 font-bold rounded-lg border-2 border-emerald-600 transition hidden"
+                            onclick="resetApp()">OK</button>
                     </div>
                 </div>
 
@@ -404,7 +424,7 @@ Geli koodhka *770# ama *711#</div>
         // ====================================================
         // 2. MEMORY CARD GAME LOGIC
         // ====================================================
-        const emojis = ['🍎', '🍌', '🍒', '🍇', '🍉', '🍓', '🥑', '🍍'];
+        const emojis = ['1', '2', '3', '4', '5', '6', '7', '8'];
         const grid = document.getElementById('grid');
         const movesEl = document.getElementById('moves');
         const matchesEl = document.getElementById('matches');
@@ -498,6 +518,7 @@ Geli koodhka *770# ama *711#</div>
         let balance = 45.50;
         let targetPhone = "";
         let transferAmount = 0;
+        
         const correctPIN = "1234";
 
         function handleUSSD() {
@@ -509,14 +530,14 @@ Geli koodhka *770# ama *711#</div>
                 if (inputVal === "*711#" || inputVal === "*770#") {
                     activeCode = inputVal;
                     state = 1;
-                    screen.innerText = "EVC Plus\nFadlan geli PIN-kaaga (4 number):";
+                    screen.innerText = "EVC Plus\nFadlan geli PIN-kaaga (enter pin):";
                     userInput.value = "";
                     userInput.type = "password";
                     userInput.placeholder = "****";
                 } else {
-                    screen.innerText = "Koodhka aad gelisay waa qalad.\nFadlan adeegso *770# ama *711#";
+                    screen.innerText = "Qaabka aad isticmaashay waa qalad.\nFadlan adeegso *770# ama *711#";
                 }
-            } 
+            }
             else if (state === 1) {
                 const isFourDigits = /^\d{4}$/.test(inputVal);
 
@@ -529,7 +550,7 @@ Geli koodhka *770# ama *711#</div>
                 } else {
                     showFinalScreen("Waa qalad PIN-ka aad galisay.");
                 }
-            } 
+            }
             else if (state === 2) {
                 userInput.value = "";
                 userInput.type = "text";
@@ -581,7 +602,7 @@ Geli koodhka *770# ama *711#</div>
                     default:
                         screen.innerText = "Doorasho qalad ah.\nFadlan dooro 1 - 8.";
                 }
-            } 
+            }
             else if (state === 3) {
                 handleSubMenuFlow(inputVal);
             }
@@ -593,7 +614,7 @@ Geli koodhka *770# ama *711#</div>
             const userInput = document.getElementById("userInput");
 
             screen.innerText = "EVCPlus\n1. Itus Haraaga\n2. Kaarka hadalka\n3. Bixi Biil\n4. U wareeji EVCPlus\n5. Warbixin Kooban\n6. Salaam Bank\n7. Maareynta\n8. Bill Payment";
-            
+
             userInput.value = "";
             userInput.type = "text";
             userInput.placeholder = "Dooro (1-8)";
@@ -626,7 +647,7 @@ Geli koodhka *770# ama *711#</div>
                     userInput.value = "";
                     userInput.placeholder = "Tusaale: 5";
                 } else {
-                    screen.innerText = "Qalad!\nGeli nambarka sax ah (e.g. 615000000)";
+                    screen.innerText = "Qalad!\nGeli nambarka sax ah";
                     userInput.value = "";
                 }
             }
@@ -637,11 +658,17 @@ Geli koodhka *770# ama *711#</div>
                     balance -= transferAmount;
                     showFinalScreen(`[-EVCPlus-]\nWaxaa $${transferAmount.toFixed(2)} u wareejisay ${targetPhone}.\nHaraagaaga cusub waa $${balance.toFixed(2)}.`);
                 } else if (amount > balance) {
-                    showFinalScreen("Haraagaaga kuuma riqayo (Lacag kufilan ma hayso).");
+
+
+
+                    showFinalScreen(`Haraagaaga kuuma filna. Haraagaaga waa $${balance.toFixed(2)}.`);
                 } else {
                     screen.innerText = "Qalad!\nGeli lacag sax ah ($):";
                     userInput.value = "";
                 }
+
+
+
             }
             else if (subState === "salaam" || subState === "manage" || subState === "bill_payment") {
                 if (val === "1" || val === "2") {
@@ -689,4 +716,5 @@ Geli koodhka *770# ama *711#</div>
         }
     </script>
 </body>
+
 </html>
